@@ -2,6 +2,7 @@ package com.who.climasense.screens.main
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
@@ -17,6 +18,7 @@ import com.who.climasense.data.DataOrException
 import com.who.climasense.models.City
 import com.who.climasense.models.Weather
 import com.who.climasense.widgets.CityDisplay
+import com.who.climasense.widgets.CreateNavigationButton
 
 @Composable
 fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel) {
@@ -25,7 +27,11 @@ fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel) {
         .paint(
             painterResource(id = R.drawable.main_bg)
         )) {
-        ShowData(viewModel = viewModel)
+        Column {
+            CreateNavigationButton()
+            ShowData(viewModel = viewModel)
+        }
+
     }
 }
 

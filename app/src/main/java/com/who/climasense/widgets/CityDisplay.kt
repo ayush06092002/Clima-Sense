@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -20,12 +21,13 @@ import java.util.Date
 @Composable
 fun CityDisplay(city: String = "Kanpur") {
     Column(modifier = Modifier
-        .padding(start = 16.dp, top = 8.dp)) {
+        .padding(start = 16.dp, top = 14.dp)) {
         Text(
             text = "Today",
             style = TextStyle(
                 fontFamily = fontFamily,
                 fontSize = 16.sp,
+                color = Color.White
             )
         )
         Text(
@@ -33,6 +35,7 @@ fun CityDisplay(city: String = "Kanpur") {
             style = TextStyle(
                 fontFamily = fontFamily,
                 fontSize = 32.sp,
+                color = Color.White,
             )
         )
         Text(
@@ -40,6 +43,7 @@ fun CityDisplay(city: String = "Kanpur") {
             style = TextStyle(
                 fontFamily = fontFamily,
                 fontSize = 12.sp,
+                color = Color.White,
             )
         )
     }
