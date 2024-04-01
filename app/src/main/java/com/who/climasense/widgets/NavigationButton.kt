@@ -32,7 +32,7 @@ import com.who.climasense.utils.noRippleClickable
 fun CreateNavigationButton() {
     var isNavigationVisible by remember { mutableStateOf(false) }
         Column(modifier = Modifier
-            .padding(start = 16.dp, top = 14.dp)) {
+            .padding(start = 25.dp, top = 14.dp)) {
             Button(onClick = {
                 isNavigationVisible = !isNavigationVisible
                 Log.d("CreateNavigationButton", "Navigation Button Clicked"

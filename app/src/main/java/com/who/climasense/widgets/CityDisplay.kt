@@ -21,7 +21,7 @@ import java.util.Date
 @Composable
 fun CityDisplay(city: String = "Kanpur") {
     Column(modifier = Modifier
-        .padding(start = 16.dp, top = 14.dp)) {
+        .padding(start = 25.dp, top = 20.dp)) {
         Text(
             text = "Today",
             style = TextStyle(
@@ -30,7 +30,7 @@ fun CityDisplay(city: String = "Kanpur") {
                 color = Color.White
             )
         )
-        Text(
+        Text(modifier = Modifier.padding(bottom = 5.dp),
             text = city,
             style = TextStyle(
                 fontFamily = fontFamily,

@@ -2,7 +2,6 @@ package com.who.climasense.widgets
 
 import android.util.Log
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,12 +31,9 @@ fun IconAndTempDisplay(imageUrl: String = "https://openweathermap.org/img/wn/10d
     Surface(modifier = Modifier
         .fillMaxWidth()
         .height(250.dp)
-//        .background(Color(0x00000000))
         ,
         color = Color.Transparent){
-        Row(modifier = Modifier.fillMaxWidth()
-//            .background(Color(0x00000000))
-            ,
+        Row(modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically){
             Image(
                 modifier = Modifier
@@ -47,15 +43,12 @@ fun IconAndTempDisplay(imageUrl: String = "https://openweathermap.org/img/wn/10d
                 painter = rememberAsyncImagePainter(model = imgUrl),
                 contentDescription = "Weather Icon"
             )
-            Spacer(modifier = Modifier.width(70.dp))
-            Column(modifier = Modifier
-//                .background(Color(0x00000000))
-                ,
+            Spacer(modifier = Modifier.width(55.dp))
+            Column(modifier = Modifier,
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
                 Row(modifier = Modifier
-//                    .background(Color(0x00000000))
                 ) {
                     Text(
                         text = integerPart, // format to remove decimal points
@@ -75,7 +68,7 @@ fun IconAndTempDisplay(imageUrl: String = "https://openweathermap.org/img/wn/10d
                         )
                     )
                 }
-                Text(modifier = Modifier.padding(end = 12.dp),
+                Text(modifier = Modifier.padding(end = 16.dp),
                     text = description,
                     style = TextStyle(
                         fontFamily = fontFamily,

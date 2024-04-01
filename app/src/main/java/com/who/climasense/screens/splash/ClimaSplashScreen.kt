@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 fun ClimaSplashScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(key1 = false) {
+    LaunchedEffect(key1 = true) {
         coroutineScope.launch {
             delay(1500)
             navController.navigate(ClimaScreens.MainScreen.name)
