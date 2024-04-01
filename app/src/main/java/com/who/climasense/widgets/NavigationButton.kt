@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -60,13 +62,14 @@ fun CreateNavigationButton() {
         exit = slideOutHorizontally(targetOffsetX = { -it })
     ) {
         NavigationPane()
-        Box(
+        Surface(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(start = 160.dp)
                 .noRippleClickable{
                     isNavigationVisible = false
-                }
+                },
+            color = Color.Transparent
         ){
         }
     }

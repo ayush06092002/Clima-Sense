@@ -30,10 +30,10 @@ fun NavigationPane() {
                 .fillMaxHeight()
                 .width(150.dp)
                 .padding(top = 16.dp)
-                .background(Color(0xA1000000))
+
         ) {
             CreateRow(image = R.drawable.add_city, text = "Add City")
-            CreateRow(image = R.drawable.app_setting, text = "Settings")
+            CreateRow(image = R.drawable.add_city, text = "Settings")
             CreateRow(image = R.drawable.map, text = "Map")
         }
 }
