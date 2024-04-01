@@ -72,11 +72,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     // Lifecycles only (without ViewModel or LiveData)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //Retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     //Google Font
     implementation(libs.androidx.ui.text.google.fonts)
