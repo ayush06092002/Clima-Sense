@@ -23,6 +23,7 @@ import com.who.climasense.models.City
 import com.who.climasense.models.Weather
 import com.who.climasense.widgets.CityDisplay
 import com.who.climasense.widgets.CreateNavigationButton
+import com.who.climasense.widgets.CreateWRHRows
 import com.who.climasense.widgets.IconAndTempDisplay
 
 @Composable
@@ -57,7 +58,10 @@ fun ShowData(viewModel: MainViewModel) {
         IconAndTempDisplay(
             weatherData.data!!.list[0].weather[0].icon,
             weatherData.data!!.list[0].main.temp.toString(),
-            weatherData.data!!.list[0].weather[0].description)
+            weatherData.data!!.list[0].weather[0].description
+        )
+
+        CreateWRHRows()
     }
 }
 

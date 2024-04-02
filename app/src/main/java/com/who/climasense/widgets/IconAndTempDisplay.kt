@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
@@ -30,7 +31,7 @@ fun IconAndTempDisplay(imageUrl: String = "https://openweathermap.org/img/wn/10d
     val integerPart = temp.substringBefore(".")
     Surface(modifier = Modifier
         .fillMaxWidth()
-        .height(250.dp)
+        .height(150.dp)
         ,
         color = Color.Transparent){
         Row(modifier = Modifier.fillMaxWidth(),
@@ -51,10 +52,11 @@ fun IconAndTempDisplay(imageUrl: String = "https://openweathermap.org/img/wn/10d
                 Row(modifier = Modifier
                 ) {
                     Text(
-                        text = integerPart, // format to remove decimal points
+                        text = integerPart,
                         style = TextStyle(
                             fontFamily = fontFamily,
                             fontSize = 64.sp,
+                            fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
                     )
@@ -63,7 +65,8 @@ fun IconAndTempDisplay(imageUrl: String = "https://openweathermap.org/img/wn/10d
                         color = Color.Yellow,
                         style = TextStyle(
                             fontFamily = fontFamily,
-                            fontSize = 30.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 35.sp,
                             color = Color.Yellow
                         )
                     )
