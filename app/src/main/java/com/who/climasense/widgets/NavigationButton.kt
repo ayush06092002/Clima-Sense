@@ -39,18 +39,18 @@ fun CreateNavigationButton() {
                 )
             },
                 modifier = Modifier
-                    .height(6.dp)
+                    .height(3.dp)
                     .width(40.dp),
                 colors = ButtonDefaults.buttonColors(Color.Yellow)) {
 
             }
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Button(onClick = {
                 isNavigationVisible = !isNavigationVisible
                 Log.d("CreateNavigationButton", "Navigation Button Clicked")
             },
                 modifier = Modifier
-                    .height(6.dp)
+                    .height(3.dp)
                     .width(23.dp),
                 colors = ButtonDefaults.buttonColors(Color.Yellow)) {
 

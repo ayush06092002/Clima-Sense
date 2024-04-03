@@ -1,10 +1,13 @@
 package com.who.climasense.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.who.climasense.network.WeatherApi
 import com.who.climasense.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,4 +36,10 @@ class AppModule {
             .build()
             .create(WeatherApi::class.java)
     }
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("your_preference_file_key", Context.MODE_PRIVATE)
+    }
+
 }
