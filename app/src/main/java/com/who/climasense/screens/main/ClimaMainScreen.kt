@@ -4,11 +4,9 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
@@ -19,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.who.climasense.R
 import com.who.climasense.data.DataOrException
-import com.who.climasense.models.City
 import com.who.climasense.models.Weather
 import com.who.climasense.widgets.CityDisplay
 import com.who.climasense.widgets.CreateNavigationButton
@@ -61,7 +58,7 @@ fun ShowData(viewModel: MainViewModel) {
             weatherData.data!!.list[0].weather[0].description
         )
 
-        CreateWRHRows()
+        CreateWRHRows(weatherData.data!!)
     }
 }
 
