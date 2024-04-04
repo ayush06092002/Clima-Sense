@@ -16,7 +16,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -34,7 +33,7 @@ import com.who.climasense.utils.fontFamily
 
 
 @Composable
-fun CreatePredictionRow(list: List<WeatherItem>) {
+fun CreatePredictionRow(list: List<WeatherItem>, onClick: (Int) -> Unit) {
     var selectedIdx by remember {
         mutableIntStateOf(0)
     }
@@ -61,6 +60,7 @@ fun CreatePredictionRow(list: List<WeatherItem>) {
                     CreatePredictionSurface(date, time, icon, temp, units,
                         curr == selectedIdx) {
                         selectedIdx = curr
+                        onClick(curr)
                     }
                 }
 
@@ -79,10 +79,8 @@ fun CreatePredictionSurface(date: String, time: String, icon: String, temp: Stri
             .height(180.dp)
             .padding(15.dp)
             .clip(RoundedCornerShape(topEnd = 25.dp, bottomStart = 25.dp))
-            .border(1.dp, Color.Yellow, RoundedCornerShape(topEnd = 25.dp, bottomStart = 25.dp)),
-        color = Color(if(isActive)
-            0xFFFFFF00 else
-                0x3BFFFFFF),
+            .border(if(isActive) 2.dp else 1.dp, Color.Yellow, RoundedCornerShape(topEnd = 25.dp, bottomStart = 25.dp)),
+        color = Color.Transparent.copy(alpha = if (isActive) 1f else 0.3f),
         onClick = onSelected
     ) {
         Column(

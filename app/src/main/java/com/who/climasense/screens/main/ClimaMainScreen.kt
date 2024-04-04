@@ -12,7 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
@@ -37,7 +41,7 @@ fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel) {
             painterResource(id = R.drawable.main_bg)
         )) {
         Column(modifier = Modifier.background(Color.Transparent)) {
-            CreateNavigationButton()
+            CreateNavigationButton(navController)
             ShowData(viewModel = viewModel)
 
         }
@@ -80,17 +84,23 @@ fun ShowData(viewModel: MainViewModel) {
         CircularProgressIndicator(modifier = Modifier.padding(start = 20.dp, top = 16.dp))
         Log.d("MainViewScreen", "Data: ${weatherData.exception}")
     }else if(weatherData.data != null){
+        var currIdx by remember {
+            mutableIntStateOf(0)
+        }
         CityDisplay(weatherData.data!!.city.name)
 
         IconAndTempDisplay(
-            weatherData.data!!.list[0].weather[0].icon,
-            weatherData.data!!.list[0].main.temp.toString(),
-            weatherData.data!!.list[0].weather[0].description
+            weatherData.data!!.list[currIdx].weather[0].icon,
+            weatherData.data!!.list[currIdx].main.temp.toString(),
+            weatherData.data!!.list[currIdx].weather[0].description
         )
 
         CreateWRHRows(weatherData.data!!)
 
-        CreatePredictionRow(weatherData.data!!.list)
+        CreatePredictionRow(weatherData.data!!.list){
+            Log.d("MainScreen", "Selected Index: $it")
+            currIdx = it
+        }
     }
 }
 

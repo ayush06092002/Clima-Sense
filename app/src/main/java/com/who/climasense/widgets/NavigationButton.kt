@@ -4,8 +4,6 @@ import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,14 +20,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.who.climasense.screens.NavigationPane
 import com.who.climasense.utils.noRippleClickable
 
-@Preview
 @Composable
-fun CreateNavigationButton() {
+fun CreateNavigationButton(navController: NavController) {
     var isNavigationVisible by remember { mutableStateOf(false) }
         Column(modifier = Modifier
             .padding(start = 25.dp, top = 14.dp)) {
@@ -61,7 +58,7 @@ fun CreateNavigationButton() {
         enter = slideInHorizontally(initialOffsetX = { -it }),
         exit = slideOutHorizontally(targetOffsetX = { -it })
     ) {
-        NavigationPane()
+        NavigationPane(navController = navController)
         Surface(
             modifier = Modifier
                 .fillMaxSize()
