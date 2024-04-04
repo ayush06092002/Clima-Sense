@@ -25,6 +25,7 @@ import com.who.climasense.data.DataOrException
 import com.who.climasense.models.Weather
 import com.who.climasense.widgets.CityDisplay
 import com.who.climasense.widgets.CreateNavigationButton
+import com.who.climasense.widgets.CreatePredictionRow
 import com.who.climasense.widgets.CreateWRHRows
 import com.who.climasense.widgets.IconAndTempDisplay
 
@@ -88,6 +89,8 @@ fun ShowData(viewModel: MainViewModel) {
         )
 
         CreateWRHRows(weatherData.data!!)
+
+        CreatePredictionRow(weatherData.data!!.list)
     }
 }
 
