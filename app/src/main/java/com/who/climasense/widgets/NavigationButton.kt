@@ -63,11 +63,11 @@ fun CreateNavigationButton(navController: NavController) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(start = 160.dp)
-                .noRippleClickable{
+                .noRippleClickable {
                     isNavigationVisible = false
                 },
             color = Color.Transparent
-        ){
+        ) {
         }
     }
 }

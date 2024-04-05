@@ -34,7 +34,8 @@ import com.who.climasense.widgets.CreateWRHRows
 import com.who.climasense.widgets.IconAndTempDisplay
 
 @Composable
-fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel) {
+fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city: String?) {
+    Log.d("ClimaMainScreen", "City: $city")
     Box(modifier = Modifier
         .fillMaxSize()
         .paint(
