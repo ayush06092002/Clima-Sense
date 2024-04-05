@@ -2,6 +2,8 @@ package com.who.climasense.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
+import com.who.climasense.data.WeatherDatabase
 import com.who.climasense.network.WeatherApi
 import com.who.climasense.utils.Constants
 import dagger.Module
@@ -18,6 +20,19 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
+    @Provides
+    @Singleton
+    fun provideWeatherDao(weatherDatabase: WeatherDatabase)
+    = weatherDatabase.weatherDao()
+
+    fun provideAppDatabase(@ApplicationContext context: Context): WeatherDatabase
+    = Room.databaseBuilder(
+        context,
+        WeatherDatabase::class.java,
+        "weather_database"
+    ).fallbackToDestructiveMigration()
+        .build()
+
     @Provides
     @Singleton
     fun providesWeatherApi(): WeatherApi {
