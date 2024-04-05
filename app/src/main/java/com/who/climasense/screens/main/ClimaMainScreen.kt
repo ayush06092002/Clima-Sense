@@ -23,10 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.who.climasense.R
 import com.who.climasense.data.DataOrException
 import com.who.climasense.models.Weather
+import com.who.climasense.screens.favorite.FavoriteViewModel
 import com.who.climasense.widgets.CityDisplay
 import com.who.climasense.widgets.CreateNavigationButton
 import com.who.climasense.widgets.CreatePredictionRow
@@ -34,7 +36,9 @@ import com.who.climasense.widgets.CreateWRHRows
 import com.who.climasense.widgets.IconAndTempDisplay
 
 @Composable
-fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city: String?) {
+fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city: String?,
+                    favViewModel: FavoriteViewModel = hiltViewModel()
+) {
     Log.d("ClimaMainScreen", "City: $city")
     Box(modifier = Modifier
         .fillMaxSize()
@@ -43,7 +47,7 @@ fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city
         )) {
         Column(modifier = Modifier.background(Color.Transparent)) {
             CreateNavigationButton(navController)
-            ShowData(viewModel = viewModel)
+            ShowData(viewModel = viewModel, city = city, favViewModel = favViewModel)
 
         }
 
@@ -51,7 +55,7 @@ fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city
 }
 
 @Composable
-fun ShowData(viewModel: MainViewModel) {
+fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteViewModel) {
     val savedWeatherData = viewModel.getLastSavedWeatherData()
     val weatherDataState: DataOrException<Weather, Boolean, Exception>
     //check internet connection
@@ -69,7 +73,7 @@ fun ShowData(viewModel: MainViewModel) {
     else{
     weatherDataState = produceState(
         initialValue = DataOrException(isLoading = true)) {
-        value = viewModel.getWeatherData("Nagpur", "metric")
+        value = viewModel.getWeatherData(city.toString(), "metric")
         viewModel.saveWeatherData(value.data!!)
         }.value
     }
@@ -88,7 +92,9 @@ fun ShowData(viewModel: MainViewModel) {
         var currIdx by remember {
             mutableIntStateOf(0)
         }
-        CityDisplay(weatherData.data!!.city.name)
+        CityDisplay(weatherData.data!!.city.name,
+            temp = weatherData.data!!.list[currIdx].main.temp.toString(),
+            favViewModel = favViewModel)
 
         IconAndTempDisplay(
             weatherData.data!!.list[currIdx].weather[0].icon,

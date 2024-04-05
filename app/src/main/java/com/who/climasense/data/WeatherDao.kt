@@ -23,6 +23,7 @@ interface WeatherDao {
     @Query("Delete from fav_table")
     suspend fun deleteAllFavorites()
 
-    @Delete
-    suspend fun deleteFavorite(favorite: Favorites)
+    @Query("Delete from fav_table where city = :favorite")
+    suspend fun deleteFavorite(favorite: String)
+
 }

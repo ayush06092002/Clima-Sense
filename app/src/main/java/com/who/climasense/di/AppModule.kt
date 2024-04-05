@@ -25,6 +25,8 @@ class AppModule {
     fun provideWeatherDao(weatherDatabase: WeatherDatabase)
     = weatherDatabase.weatherDao()
 
+    @Provides
+    @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): WeatherDatabase
     = Room.databaseBuilder(
         context,

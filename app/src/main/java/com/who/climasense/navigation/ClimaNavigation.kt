@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.who.climasense.screens.favorite.FavoriteViewModel
 import com.who.climasense.screens.main.ClimaMainScreen
 import com.who.climasense.screens.main.MainViewModel
 import com.who.climasense.screens.search.SearchScreen

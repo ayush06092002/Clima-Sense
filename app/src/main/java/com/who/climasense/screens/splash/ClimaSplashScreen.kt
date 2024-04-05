@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun ClimaSplashScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
-    val defaultCity = "Kanpur"
+    val defaultCity = "Nagpur"
     LaunchedEffect(key1 = true) {
         coroutineScope.launch {
             delay(1500)
