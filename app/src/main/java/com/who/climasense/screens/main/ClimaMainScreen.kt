@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.produceState
@@ -29,6 +30,7 @@ import com.who.climasense.R
 import com.who.climasense.data.DataOrException
 import com.who.climasense.models.Weather
 import com.who.climasense.screens.favorite.FavoriteViewModel
+import com.who.climasense.screens.settings.SettingsViewModel
 import com.who.climasense.widgets.CityDisplay
 import com.who.climasense.widgets.CreateNavigationButton
 import com.who.climasense.widgets.CreatePredictionRow
@@ -37,9 +39,11 @@ import com.who.climasense.widgets.IconAndTempDisplay
 
 @Composable
 fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city: String?,
-                    favViewModel: FavoriteViewModel = hiltViewModel()
+                    favViewModel: FavoriteViewModel,
+                    settingsViewModel: SettingsViewModel = hiltViewModel()
 ) {
-    Log.d("ClimaMainScreen", "City: $city")
+    val unit = settingsViewModel.unitList.collectAsState().value
+    val unitType = if(unit.isEmpty()) "metric" else unit[0].unit
     Box(modifier = Modifier
         .fillMaxSize()
         .paint(
@@ -47,15 +51,14 @@ fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city
         )) {
         Column(modifier = Modifier.background(Color.Transparent)) {
             CreateNavigationButton(navController)
-            ShowData(viewModel = viewModel, city = city, favViewModel = favViewModel)
-
+            ShowData(viewModel = viewModel, city = city, favViewModel = favViewModel, unit = unitType)
         }
 
     }
 }
 
 @Composable
-fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteViewModel) {
+fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteViewModel, unit: String) {
     val savedWeatherData = viewModel.getLastSavedWeatherData()
     val weatherDataState: DataOrException<Weather, Boolean, Exception>
     //check internet connection
@@ -73,7 +76,7 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
     else{
     weatherDataState = produceState(
         initialValue = DataOrException(isLoading = true)) {
-        value = viewModel.getWeatherData(city.toString(), "metric")
+        value = viewModel.getWeatherData(city.toString(), unit)
         viewModel.saveWeatherData(value.data!!)
         }.value
     }
@@ -87,7 +90,7 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
 
     if(weatherData.isLoading == true){
         CircularProgressIndicator(modifier = Modifier.padding(start = 20.dp, top = 16.dp))
-        Log.d("MainViewScreen", "Data: ${weatherData.exception}")
+//        Log.d("MainViewScreen", "Data: ${weatherData.exception}")
     }else if(weatherData.data != null){
         var currIdx by remember {
             mutableIntStateOf(0)

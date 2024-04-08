@@ -11,6 +11,7 @@ import com.who.climasense.screens.favorite.FavoriteViewModel
 import com.who.climasense.screens.main.ClimaMainScreen
 import com.who.climasense.screens.main.MainViewModel
 import com.who.climasense.screens.search.SearchScreen
+import com.who.climasense.screens.settings.SettingScreen
 import com.who.climasense.screens.splash.ClimaSplashScreen
 
 @Composable
@@ -33,13 +34,19 @@ fun ClimaNavigation() {
         ) { backStackEntry ->
             backStackEntry.arguments?.getString("city").let { city ->
                 val mainViewModel = hiltViewModel<MainViewModel>()
+                val favoriteViewModel = hiltViewModel<FavoriteViewModel>()
                 ClimaMainScreen(navController = navController,
                     viewModel = mainViewModel,
-                    city = city)
+                    city = city,
+                    favViewModel = favoriteViewModel)
             }
         }
         composable(ClimaScreens.SearchScreen.name){
             SearchScreen(navController)
+        }
+
+        composable(ClimaScreens.SettingsScreen.name){
+            SettingScreen(navController)
         }
     }
 }

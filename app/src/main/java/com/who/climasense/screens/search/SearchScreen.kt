@@ -8,22 +8,24 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,33 +34,33 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.who.climasense.R
 import com.who.climasense.navigation.ClimaScreens
+import com.who.climasense.screens.favorite.FavoriteScreen
+import com.who.climasense.screens.favorite.FavoriteViewModel
+import com.who.climasense.screens.favorite.SwipeToDeleteContainer
 import com.who.climasense.utils.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen(navController: NavController) {
+fun SearchScreen(navController: NavController, favoriteViewModel: FavoriteViewModel = hiltViewModel()) {
     var searchText by remember { mutableStateOf("") }
 
     Box(modifier = Modifier
         .fillMaxSize()
-        .background(Color.Black)
-        .paint(painterResource(id = R.drawable.main_bg))){
+        .background(Color(0xFF000000))
+        .paint(painterResource(id = R.drawable.main_bg))
+        ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Transparent),
+//                .background(Color.Transparent)
         ) {
             Row(modifier = Modifier.padding(bottom = 10.dp),
                 horizontalArrangement = Arrangement.Center,
@@ -124,82 +126,24 @@ fun SearchScreen(navController: NavController) {
             }
 
             Spacer(modifier = Modifier.height(45.dp))
-
+            val list = favoriteViewModel.favList.collectAsState().value
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                items(1){
-                    CreateCitySurface()
+                items(list){ favorites ->
+                    SwipeToDeleteContainer(
+                        item = favorites,
+                        onDelete = { favoriteViewModel.deleteFavorite(favorites.city) }){
+                        FavoriteScreen(favorites = it)
+                    }
                 }
             }
         }
     }
 }
 
-@Composable
-fun CreateCitySurface() {
-    Surface(
-        modifier = Modifier
-            .width(350.dp)
-            .padding(20.dp)
-            .height(120.dp)
-            .background(brush = Brush.verticalGradient(listOf(Color.Transparent, Color.Black))),
-        shape = RoundedCornerShape(topStart = 5.dp, topEnd = 20.dp
-        ,bottomStart = 20.dp, bottomEnd = 5.dp),
-//        color = Color(0x60FFFFFF)
-    ){
-        Row(
-            modifier = Modifier.padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column(
-                modifier = Modifier,
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ){
 
-                Row(modifier = Modifier
-                ) {
-                    Text(
-                        text = "28",
-                        style = TextStyle(
-                            fontFamily = fontFamily,
-                            fontSize = 50.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
-                    )
-                    Text(modifier = Modifier.padding(top = 10.dp),
-                        text = "°",
-                        color = Color.Yellow,
-                        style = TextStyle(
-                            fontFamily = fontFamily,
-                            fontWeight = FontWeight.SemiBold,
-                            fontSize = 35.sp,
-                            color = Color.Yellow
-                        )
-                    )
-                }
-                Text(modifier = Modifier,
-                    text = "Nagpur",
-                    style = TextStyle(
-                        fontFamily = fontFamily,
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 20.sp,
-                        color = Color.White
-                    )
-                )
-            }
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "Weather Icon",
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(100.dp)
-            )
-        }
-    }
-}
 

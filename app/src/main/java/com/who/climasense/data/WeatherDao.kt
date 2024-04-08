@@ -5,7 +5,9 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.who.climasense.models.Favorites
+import com.who.climasense.models.Unit
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -25,5 +27,18 @@ interface WeatherDao {
 
     @Query("Delete from fav_table where city = :favorite")
     suspend fun deleteFavorite(favorite: String)
+
+    //settings table
+    @Query("Select * from settings")
+    fun getUnit() : Flow<List<Unit>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addUnit(unit: Unit)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateUnit(unit: Unit)
+
+    @Query("Delete from settings")
+    suspend fun deleteUnit()
 
 }

@@ -26,7 +26,7 @@ class FavoriteViewModel @Inject constructor(private val repository: WeatherDbRep
                     Log.d("FavoriteViewModel", "No favorites found")
                 }else{
                     _favList.value = it
-                    Log.d("FavoriteViewModel", "Favorites found {$favList.value}")
+                    Log.d("FavoriteViewModel", "Favorites found {$favList}")
                 }
             }
         }
