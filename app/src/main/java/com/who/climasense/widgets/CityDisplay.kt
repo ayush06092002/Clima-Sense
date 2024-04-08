@@ -37,8 +37,12 @@ fun CityDisplay(
     temp: String,
     favViewModel: FavoriteViewModel
 ) {
-    Column(modifier = Modifier
-        .padding(start = 25.dp, top = 20.dp)) {
+    // Remember the favorite state of the city
+    val isFavorite = remember {
+        mutableStateOf(favViewModel.isFavorite(city))
+    }
+
+    Column(modifier = Modifier.padding(start = 25.dp, top = 20.dp)) {
         Text(
             text = "Today",
             style = TextStyle(
@@ -49,7 +53,8 @@ fun CityDisplay(
         )
         //add label
         Row(horizontalArrangement = Arrangement.Center) {
-            Text(modifier = Modifier.padding(bottom = 5.dp),
+            Text(
+                modifier = Modifier.padding(bottom = 5.dp),
                 text = city,
                 style = TextStyle(
                     fontFamily = fontFamily,
@@ -59,24 +64,33 @@ fun CityDisplay(
             )
             Spacer(modifier = Modifier.width(10.dp))
 
-
-            if(favViewModel.isFavorite(city)){
-                Image(painter = painterResource(id = R.drawable.favorite), contentDescription = "Favorite",
-                    modifier = Modifier.width(30.dp).padding(top = 8.dp)
-                        .clickable {
-                            favViewModel.deleteFavorite(city)
-                        })
-            } else{
-                Image(painter = painterResource(id = R.drawable.favorite_border), contentDescription = "Not Favorite",
-                    modifier = Modifier.width(30.dp).padding(top = 8.dp)
-                        .clickable {
-                            favViewModel.addFavorite(Favorites(
-                                city = city,
-                                temp = temp,
-                                icon = icon
-                            ))
-                        })
+            //change favorite icon based on if city is favorite or not
+            val favoriteIcon = if (isFavorite.value) {
+                R.drawable.favorite
+            } else {
+                R.drawable.favorite_border
             }
+
+            Image(
+                painter = painterResource(id = favoriteIcon),
+                contentDescription = if (isFavorite.value) "Favorite" else "Not Favorite",
+                modifier = Modifier.width(30.dp).padding(top = 8.dp)
+                    .clickable {
+                        if (isFavorite.value) {
+                            favViewModel.deleteFavorite(city)
+                        } else {
+                            favViewModel.addFavorite(
+                                Favorites(
+                                    city = city,
+                                    temp = temp,
+                                    icon = icon
+                                )
+                            )
+                        }
+                        // Toggle the favorite state when clicked
+                        isFavorite.value = !isFavorite.value
+                    }
+            )
         }
 
         Text(

@@ -25,11 +25,11 @@ import com.who.climasense.models.Weather
 import com.who.climasense.utils.fontFamily
 
 @Composable
-fun CreateWRHRows(data: Weather) {
-    val intValueRain = data.list[0].pop.toString().substringBefore(".")
-    val windSpeed = data.list[0].wind.speed.toString()
-    val humidity = data.list[0].main.humidity.toString()
-    val deg = data.list[0].wind.deg
+fun CreateWRHRows(data: Weather, currIdx: Int) {
+    val intValueRain = (data.list[currIdx].pop * 100).toString().substringBefore(".")
+    val windSpeed = data.list[currIdx].wind.speed.toString()
+    val humidity = data.list[currIdx].main.humidity.toString()
+    val deg = data.list[currIdx].wind.deg
     val direction = when(deg){
         in 0..22 -> "N"
         in 23..67 -> "NE"

@@ -102,7 +102,7 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
             weatherData.data!!.list[currIdx].weather[0].description
         )
 
-        CreateWRHRows(weatherData.data!!)
+        CreateWRHRows(weatherData.data!!, currIdx)
 
         CreatePredictionRow(weatherData.data!!.list){
             Log.d("MainScreen", "Selected Index: $it")
