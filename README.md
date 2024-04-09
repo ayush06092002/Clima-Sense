@@ -1,4 +1,5 @@
 # ClimaSense
+<img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/7e0558ce-b5ee-4509-acc0-a73f46b710aa" width="250" height="250" />
 
 ClimaSense is an Android application developed using Kotlin and Java. It provides weather information and allows users to add their favorite cities.
 
@@ -35,7 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 - JDK 8 or later
 
 ### Installing
-Use the <a href = "">apk</a> OR
+Use the <a href = "https://drive.google.com/file/d/1OD_00iqRxalSok1YNxc8BDaRcgBQ_AWI/view?usp=drive_link">apk</a> OR
 1. Clone the repository
 2. Open the project in Android Studio
 3. Build and run the project on an emulator or real device
