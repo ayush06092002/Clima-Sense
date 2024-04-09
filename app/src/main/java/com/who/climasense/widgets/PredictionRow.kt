@@ -22,14 +22,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberAsyncImagePainter
 import com.who.climasense.models.WeatherItem
 import com.who.climasense.utils.epochToDate
 import com.who.climasense.utils.epochToTime
 import com.who.climasense.utils.fontFamily
+import com.who.climasense.utils.loadImageFromAssets
 
 
 @Composable
@@ -101,11 +103,13 @@ fun CreatePredictionSurface(date: String, time: String, icon: String, temp: Stri
                 fontWeight = FontWeight.SemiBold,
                 fontSize = 12.sp
             )
+            val imgUrl = loadImageFromAssets(LocalContext.current, "images/$icon.png")
             Image(modifier = Modifier
                 .width(50.dp)
                 .height(50.dp),
-                painter = rememberAsyncImagePainter(model = "https://openweathermap.org/img/wn/$icon.png"),
-                contentDescription = "Weather Icon")
+                bitmap = imgUrl!!.asImageBitmap(),
+                contentDescription = "Weather Icon"
+            )
             if(units == "metric"){
                 Text(
                     text = "$temp°C",

@@ -1,6 +1,5 @@
 package com.who.climasense.widgets
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,17 +15,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.rememberAsyncImagePainter
 import com.who.climasense.utils.fontFamily
+import com.who.climasense.utils.loadImageFromAssets
 
 @Composable
 fun IconAndTempDisplay(imageUrl: String, temp: String
 , description: String){
-    val imgUrl = "https://openweathermap.org/img/wn/$imageUrl@2x.png"
+    val imgUrl = loadImageFromAssets(LocalContext.current, "images/$imageUrl.png")
 //    Log.d("IconAndTempDisplay", "Icon URL: $imgUrl")
     val integerPart = temp.substringBefore(".")
     Surface(modifier = Modifier
@@ -41,7 +42,7 @@ fun IconAndTempDisplay(imageUrl: String, temp: String
                     .width(200.dp)
                     .height(180.dp)
                     .padding(16.dp),
-                painter = rememberAsyncImagePainter(model = imgUrl),
+                bitmap = imgUrl!!.asImageBitmap(),
                 contentDescription = "Weather Icon"
             )
             Spacer(modifier = Modifier.width(55.dp))

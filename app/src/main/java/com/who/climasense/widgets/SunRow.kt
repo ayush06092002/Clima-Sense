@@ -33,7 +33,7 @@ fun SunRow(sunrise: Int, sunset: Int) {
             .clip(RoundedCornerShape(topEnd = 40.dp, bottomStart = 40.dp))
             .width(350.dp)
             .height(170.dp)
-            .background(color = Color(0x4BFFFFFF))
+            .background(color = Color(0x31FFFFFF))
             .border(
                 width = 1.dp,
                 color = Color.Yellow,

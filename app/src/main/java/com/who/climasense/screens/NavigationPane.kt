@@ -1,6 +1,5 @@
 package com.who.climasense.screens
 
-import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
@@ -42,9 +41,6 @@ fun NavigationPane(navController: NavController) {
             CreateRow(image = R.drawable.add_city, text = "Search City"){
                 navController.navigate(ClimaScreens.SearchScreen.name)
             }
-            CreateRow(image = R.drawable.favorite, text = "Favorites"){
-//                Log.d("NavigationPane", "Favorites Clicked")
-            }
             CreateRow(image = R.drawable.app_setting, text = "Settings"){
                 navController.navigate(ClimaScreens.SettingsScreen.name)
             }
@@ -52,7 +48,7 @@ fun NavigationPane(navController: NavController) {
 }
 
 @Composable
-fun CreateRow(image: Int = R.drawable.add_city, text: String = "Add City", onClick: () -> Unit) {
+fun CreateRow(image: Int = R.drawable.add_city, text: String, onClick: () -> Unit) {
 
     var isVisible by remember { mutableStateOf(true) }
 
