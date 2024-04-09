@@ -24,7 +24,7 @@ ClimaSense is an Android application developed using Kotlin and Java. It provide
 
 ## Video Demonstration
 <video width="250" height="555.56" controls>
-  <source src="https://github.com/ayush06092002/Clima-Sense/assets/22142132/d746da0b-74c8-4ddd-b85e-61c93ee6a117" type="video/mp4">
+  <source src="https://github-production-user-asset-6210df.s3.amazonaws.com/22142132/320861965-d746da0b-74c8-4ddd-b85e-61c93ee6a117.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
