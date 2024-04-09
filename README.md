@@ -16,14 +16,17 @@ ClimaSense is an Android application developed using Kotlin and Java. It provide
 ## Screenshots
 
 <img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/3fec9185-43bd-4c83-a767-976419e84809" width="250" height="555.56" />
+<img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/673bc6ba-6f26-4715-9eba-e24cf2e51484" width="250" height="555.56" />
 <img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/cb0089c9-7782-4f4b-bd1b-7177bca79ed1" width="250" height="555.56" />
 <img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/cd2a2844-37f3-4af4-b8e8-aebf5c265ec1" width="250" height="555.56" />
 <img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/1fd806b5-f5d9-45fe-b0cb-689dc2fd09e5" width="250" height="555.56" />
-<img src = "https://github.com/ayush06092002/Clima-Sense/assets/22142132/673bc6ba-6f26-4715-9eba-e24cf2e51484" width="250" height="555.56" />
 
-##Video Demonstration
-https://github.com/ayush06092002/Clima-Sense/assets/22142132/d746da0b-74c8-4ddd-b85e-61c93ee6a117
 
+## Video Demonstration
+<video width="250" height="555.56" controls>
+  <source src="https://github.com/ayush06092002/Clima-Sense/assets/22142132/d746da0b-74c8-4ddd-b85e-61c93ee6a117" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## Getting Started
 
