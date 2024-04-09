@@ -44,7 +44,7 @@ fun CreateNavigationButton(navController: NavController) {
             Spacer(modifier = Modifier.height(4.dp))
             Button(onClick = {
                 isNavigationVisible = !isNavigationVisible
-                Log.d("CreateNavigationButton", "Navigation Button Clicked")
+//                Log.d("CreateNavigationButton", "Navigation Button Clicked")
             },
                 modifier = Modifier
                     .height(3.dp)

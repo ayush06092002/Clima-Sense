@@ -27,7 +27,7 @@ import com.who.climasense.utils.fontFamily
 fun IconAndTempDisplay(imageUrl: String, temp: String
 , description: String){
     val imgUrl = "https://openweathermap.org/img/wn/$imageUrl@2x.png"
-    Log.d("IconAndTempDisplay", "Icon URL: $imgUrl")
+//    Log.d("IconAndTempDisplay", "Icon URL: $imgUrl")
     val integerPart = temp.substringBefore(".")
     Surface(modifier = Modifier
         .fillMaxWidth()

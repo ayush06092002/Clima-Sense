@@ -43,7 +43,7 @@ fun NavigationPane(navController: NavController) {
                 navController.navigate(ClimaScreens.SearchScreen.name)
             }
             CreateRow(image = R.drawable.favorite, text = "Favorites"){
-                Log.d("NavigationPane", "Favorites Clicked")
+//                Log.d("NavigationPane", "Favorites Clicked")
             }
             CreateRow(image = R.drawable.app_setting, text = "Settings"){
                 navController.navigate(ClimaScreens.SettingsScreen.name)

@@ -26,7 +26,7 @@ class SettingsViewModel @Inject constructor(private val repository: WeatherDbRep
                     Log.d("SettingsViewModel", "No Units found")
                 }else{
                     _unitList.value = it
-                    Log.d("FavoriteViewModel", "Unit found {$unitList}")
+//                    Log.d("FavoriteViewModel", "Unit found {$unitList}")
                 }
             }
         }

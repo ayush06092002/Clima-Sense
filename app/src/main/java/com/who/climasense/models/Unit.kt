@@ -9,5 +9,7 @@ import androidx.room.PrimaryKey
 data class Unit(
     @PrimaryKey
     @ColumnInfo(name = "unit")
-    val unit: String
+    val unit: String,
+    @ColumnInfo(name = "defaultCity")
+    val defaultCity: String
 )

@@ -1,6 +1,7 @@
 package com.who.climasense.screens.favorite
 
 import android.util.Log
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.who.climasense.models.Favorites
@@ -18,7 +19,6 @@ class FavoriteViewModel @Inject constructor(private val repository: WeatherDbRep
     : ViewModel() {
     private val _favList = MutableStateFlow<List<Favorites>>(emptyList())
     val favList = _favList.asStateFlow()
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getFavorites().distinctUntilChanged().collect {
@@ -26,7 +26,7 @@ class FavoriteViewModel @Inject constructor(private val repository: WeatherDbRep
                     Log.d("FavoriteViewModel", "No favorites found")
                 }else{
                     _favList.value = it
-                    Log.d("FavoriteViewModel", "Favorites found {$favList}")
+//                    Log.d("FavoriteViewModel", "Favorites found {$favList}")
                 }
             }
         }

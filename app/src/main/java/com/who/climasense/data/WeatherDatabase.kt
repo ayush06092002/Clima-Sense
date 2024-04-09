@@ -6,7 +6,7 @@ import com.who.climasense.models.Favorites
 import com.who.climasense.models.Unit
 
 
-@Database(entities = [Favorites::class, Unit::class], version = 2, exportSchema = false)
+@Database(entities = [Favorites::class, Unit::class], version = 3, exportSchema = false)
 abstract class WeatherDatabase: RoomDatabase(){
     abstract fun weatherDao(): WeatherDao
 }

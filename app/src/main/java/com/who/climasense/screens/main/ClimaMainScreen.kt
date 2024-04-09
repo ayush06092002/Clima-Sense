@@ -51,6 +51,7 @@ fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city
         )) {
         Column(modifier = Modifier.background(Color.Transparent)) {
             CreateNavigationButton(navController)
+            Log.d("MainScreenCall", "Unit: $unitType")
             ShowData(viewModel = viewModel, city = city, favViewModel = favViewModel, unit = unitType)
         }
 
@@ -65,7 +66,7 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
     if (!isNetworkAvailable(context = LocalContext.current)) {
         if(savedWeatherData == null){
             CircularProgressIndicator(modifier = Modifier.padding(start = 20.dp, top = 16.dp))
-            Toast.makeText(LocalContext.current, "No Internet Connection", Toast.LENGTH_SHORT).show()
+            Toast.makeText(LocalContext.current, "No Internet Connection and No data to Display", Toast.LENGTH_SHORT).show()
             return
         }
         else{
@@ -77,6 +78,7 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
     weatherDataState = produceState(
         initialValue = DataOrException(isLoading = true)) {
         value = viewModel.getWeatherData(city.toString(), unit)
+        Log.d("MainScreenKaFunction", "Data: $unit")
         viewModel.saveWeatherData(value.data!!)
         }.value
     }
@@ -108,7 +110,7 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
         CreateWRHRows(weatherData.data!!, currIdx)
 
         CreatePredictionRow(weatherData.data!!.list){
-            Log.d("MainScreen", "Selected Index: $it")
+//            Log.d("MainScreen", "Selected Index: $it")
             currIdx = it
         }
     }

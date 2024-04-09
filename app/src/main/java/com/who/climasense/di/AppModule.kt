@@ -48,7 +48,7 @@ class AppModule {
         httpClient.addInterceptor(loggingInterceptor)
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
-            .client(httpClient.build())
+            .client(httpClient.build()) //for logging
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherApi::class.java)

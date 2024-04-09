@@ -1,6 +1,7 @@
 package com.who.climasense.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -12,6 +13,7 @@ import com.who.climasense.screens.main.ClimaMainScreen
 import com.who.climasense.screens.main.MainViewModel
 import com.who.climasense.screens.search.SearchScreen
 import com.who.climasense.screens.settings.SettingScreen
+import com.who.climasense.screens.settings.SettingsViewModel
 import com.who.climasense.screens.splash.ClimaSplashScreen
 
 @Composable
@@ -20,8 +22,9 @@ fun ClimaNavigation() {
     NavHost(navController = navController,
         startDestination = ClimaScreens.SplashScreen.name) {
         composable(ClimaScreens.SplashScreen.name) {
-            ClimaSplashScreen(navController = navController)
-        }
+                ClimaSplashScreen(navController = navController)
+            }
+
 
         val route = ClimaScreens.MainScreen.name
 
