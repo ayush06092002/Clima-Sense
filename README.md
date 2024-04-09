@@ -37,7 +37,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 Use the <a href = "https://drive.google.com/file/d/1OD_00iqRxalSok1YNxc8BDaRcgBQ_AWI/view?usp=drive_link">apk</a> OR
-1. Clone the repository
+1. Clone the repository (Make sure to paste your own API Key in app/src/main/java/com/who/climasense/utils/Constants.kt)
 2. Open the project in Android Studio
 3. Build and run the project on an emulator or real device
 
