@@ -36,6 +36,7 @@ import com.who.climasense.widgets.CreateNavigationButton
 import com.who.climasense.widgets.CreatePredictionRow
 import com.who.climasense.widgets.CreateWRHRows
 import com.who.climasense.widgets.IconAndTempDisplay
+import com.who.climasense.widgets.SunRow
 
 @Composable
 fun ClimaMainScreen(navController: NavController, viewModel: MainViewModel, city: String?,
@@ -113,6 +114,11 @@ fun ShowData(viewModel: MainViewModel, city: String?, favViewModel: FavoriteView
 //            Log.d("MainScreen", "Selected Index: $it")
             currIdx = it
         }
+
+        SunRow(
+            weatherData.data!!.city.sunrise,
+            weatherData.data!!.city.sunset
+        )
     }
 }
 

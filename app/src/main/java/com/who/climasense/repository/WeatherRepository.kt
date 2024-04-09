@@ -1,12 +1,8 @@
 package com.who.climasense.repository
 
-import android.util.Log
 import com.who.climasense.data.DataOrException
-
 import com.who.climasense.models.Weather
 import com.who.climasense.network.WeatherApi
-import com.who.climasense.utils.Constants
-
 import javax.inject.Inject
 
 class WeatherRepository @Inject constructor(private val api: WeatherApi) {
